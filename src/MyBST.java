@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class MyBST {
     Node node;
 
@@ -58,7 +61,7 @@ public class MyBST {
         if (value < node.value) {
             node.left = delete(node.left, value);
             return node;
-            }
+        }
         if (node.left == null) {
             return node.right;
         }
@@ -70,11 +73,35 @@ public class MyBST {
         }
         return node;
     }
-    public void order(Node node){
+
+    public void order(Node node) {
         if (node != null) {
             order(node.left);
             System.out.print(" " + node.value);
             order(node.right);
+        }
+    }
+
+    public void preOrder(Node node) {
+        if (node != null) {
+            System.out.println("" + node.value);
+            preOrder(node.left);
+            preOrder(node.right);
+        }
+    }
+
+    public void levelOrder() {
+        if (node == null)
+            return;
+        Queue<Node> note = new LinkedList<>();
+        note.add(node);
+        while (!note.isEmpty()){
+            Node node = note.remove();
+            if(node.left != null){
+                note.add(node.left);
+            } if(node.right != null){
+                note.add(node.right);
+            }
         }
     }
 }
